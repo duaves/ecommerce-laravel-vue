@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/vue": "^0.0.0-insiders.bfacb64",
+    "@heroicons/vue": "^2.0.18",
+    "@tailwindcss/forms": "^0.5.7",
     "vue": "^3.3.4",
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2"
