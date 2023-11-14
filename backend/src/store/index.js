@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 
+
 const store = createStore({
     state: {
         test:'1234123123'
@@ -9,4 +10,4 @@ const store = createStore({
     mutations: {},
 })
 
-export default store
+export default store;
