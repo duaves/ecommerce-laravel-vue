@@ -1,12 +1,8 @@
 
 <template>
-    
-    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Войти</h2>
-      </div>
-  
+
+  <GuestLayout title="Войти">
+   
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" action="#" method="POST">
           <div>
@@ -39,12 +35,15 @@
           <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Регистрация</a>
         </p>
       </div>
-    </div>
+    
+  </GuestLayout>
   </template>
   
 
 <script>
-    export default {
-        name: "Login"
-    } 
+import GuestLayout from '../components/GuestLayout.vue';
+
+function login(){
+  console.log("Login");
+}
 </script>
