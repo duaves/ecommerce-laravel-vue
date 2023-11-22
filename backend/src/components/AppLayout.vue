@@ -1,16 +1,17 @@
 <template>
-  <div class="flex min-h-full">
+  <div class="flex  min-h-full">
     <!-- Sidebar -->
-    <Sidebar/>
+    <Sidebar :class="{'-ml-[200px]': !sidebarOpened}"/>
     <!-- Main -->
     <div class="flex-1">
-      <header class="h-8 shadow bg-white">
+      <Navbar @toggle-sidebar="toggleSidebar"/>
+      <!-- <header class="h-8 shadow bg-white">
         Header
-      </header>
-      <main>
-        <router-view>
-
-        </router-view>
+      </header> -->
+      <main class="p-6">
+        <div class="p-4 rounded bg-white">
+          <router-view></router-view>
+        </div>
       </main>
     </div>
   
@@ -18,11 +19,19 @@
 </template>
 
 <script setup>
+import {ref} from 'vue'
 import Sidebar from "./Sidebar.vue";
+import Navbar from "./Navbar.vue";
 
 const { title } = defineProps({
   title: String
 })
+
+const sidebarOpened = ref(true);
+
+function toggleSidebar() {
+  sidebarOpened.value = !sidebarOpened.value
+}
 </script>
 
 <style scoped></style>
