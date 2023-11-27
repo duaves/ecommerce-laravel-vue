@@ -1,40 +1,54 @@
 
 <template>
-<GuestLayout title="Войти">
-  
-      <form class="space-y-6" action="#" method="POST">
-        <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-          <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-          </div>
+  <GuestLayout title="Войти">
+
+    <form class="space-y-6" action="#" method="POST" @submit.prevent="login">
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+        <div class="mt-2">
+          <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.email"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Пароль</label>
+          
+        </div>
+        <div class="mt-2">
+          <input id="password" name="password" type="password" autocomplete="current-password" required=""
+            v-model="user.password"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        </div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember"
+            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
+          <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Запомнить меня </label>
         </div>
 
-        <div>
-          <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Пароль</label>
-            <div class="text-sm">
-              <router-link :to="{name: 'requestPassword'}" class="font-medium text-indigo-600 hover:text-indigo-500">Забыли пароль?
-          </router-link>
-            </div>
+        <div class="text-sm">
+            <router-link :to="{ name: 'requestPassword' }" class="font-medium text-indigo-600 hover:text-indigo-500">Забыли
+              пароль?
+            </router-link>
           </div>
-          <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required="" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-          </div>
-        </div>
+      </div>
 
-        <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Войти</button>
-        </div>
-      </form>
+      <div>
+        <button type="submit"
+          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Войти</button>
+      </div>
+    </form>
 
-    
-</GuestLayout>
+
+  </GuestLayout>
 </template>
 
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue';
 import GuestLayout from "../components/GuestLayout.vue";
 import store from "../store";
 import router from "../router";
@@ -53,9 +67,9 @@ function login() {
   store.dispatch('login', user)
     .then(() => {
       loading.value = false;
-      router.push({name: 'app.dashboard'})
+      router.push({ name: 'app.dashboard' })
     })
-    .catch(({response}) => {
+    .catch(({ response }) => {
       loading.value = false;
       errorMsg.value = response.data.message;
     })
