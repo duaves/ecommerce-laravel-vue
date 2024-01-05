@@ -9,7 +9,7 @@
         Header
       </header> -->
       <main class="p-6">
-        <div class="p-4 rounded bg-white">
+        <div class="p-4 rounded ">
           <router-view ></router-view>
         </div>
       </main>
